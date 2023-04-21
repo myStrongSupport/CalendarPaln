@@ -1,0 +1,95 @@
+.header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: right;
+  padding-top: 20px;
+  padding-right: 51px;
+  z-index: 100;
+}
+
+.user {
+  display: grid;
+  place-content: center;
+  padding: 50px 0;
+  text-align: center;
+  user-select: none;
+}
+
+.user h4 {
+  margin-top: 20px;
+  color: #fff;
+  font-family: var(--font-text);
+}
+
+.user-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #feefef;
+}
+
+.user-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.navbar {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  background-color: #141414;
+  height: 100%;
+}
+.hamburger {
+  cursor: pointer;
+}
+.list {
+  list-style: none;
+}
+
+.list li {
+  width: 100%;
+}
+
+.list li a {
+  width: 100%;
+  padding: 20px 15px;
+  display: block;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.list li:hover a {
+  background-color: #fff;
+}
+
+.list li a svg {
+  transition: all 0.3s ease;
+  color: #fff;
+  font-size: 23px;
+}
+
+.list li:hover a svg {
+  color: #141414;
+}
+
+/* .container {
+    width: 5px;
+    height: 100%;
+    background-color: #000;
+    transition: width .5s ease;
+} */
+
+/* .container:hover {
+    width: 100px;
+    transform-origin: left;
+} */

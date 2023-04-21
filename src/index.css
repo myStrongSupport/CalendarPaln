@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Alkalami&family=Harmattan:wght@400;700&display=swap");
+:root {
+  --font-title: "Alkalami", serif;
+  --font-text: "Harmattan", sans-serif;
+  --font-num: num;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  direction: rtl;
+  /* background: linear-gradient(130deg, #2e365d 30%, #435da2, #5c7ecf); */
+}
+
+.container {
+  max-width: 1400px;
+  height: 100%;
+  padding: 0 30px;
+  margin: auto;
+}
+
+@font-face {
+  font-family: num;
+  src: url(assets//font/Salamat/Salamat.ttf);
+}
+
+.calendar-mention {
+  position: relative;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.8)
+  );
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-text);
+  width: fit-content;
+  margin: 50px;
+  padding: 10px 30px;
+}
+.calendar-mention > div {
+  display: flex;
+  align-items: center;
+}
+.calendar-mention > div span {
+  font-size: 1.5rem;
+  margin-right: 50px;
+}
+.calendar-mention h4 {
+  font-size: 2rem;
+}
+
+.calendar-mention p {
+  font-size: 3rem;
+}

@@ -1,0 +1,16 @@
+.zeker-item {
+    display: flex;
+    padding:  20px 0 ;
+    align-items: center;
+}
+.zeker-item_day {
+ font-size: 1.5rem;
+ margin-left: 50px;
+ width: 100px;
+ font-family: var(--font-title);
+}
+
+.zeker-item_mention{
+    font-size: 1.7rem;
+    font-family: var(--font-text);
+}

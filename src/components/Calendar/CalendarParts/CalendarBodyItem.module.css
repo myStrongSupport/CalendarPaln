@@ -1,0 +1,39 @@
+.item {
+  z-index: 1;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 1.5rem;
+  font-family: var(--font-num2);
+  user-select: none;
+}
+
+.item:hover {
+  color: #000;
+}
+
+.item::before {
+  position: absolute;
+  content: "";
+  width: 78%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.item:hover::before {
+  background-color: #ffffff41;
+  backdrop-filter: blur(10px);
+}
+
+.last-month-day,
+.next-month-day {
+  color: #ffffff62 !important;
+}
+
+.last-month-day:hover,
+.next-month-day:hover {
+  color: #00000064 !important;
+}

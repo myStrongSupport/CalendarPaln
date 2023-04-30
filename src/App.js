@@ -18,6 +18,11 @@ function App() {
         {
           path: "calendar",
           element: <CalendarPage />,
+          children: [
+            {
+              path: ":eventId",
+            },
+          ],
         },
         { path: "info", element: <InfoPage /> },
       ],

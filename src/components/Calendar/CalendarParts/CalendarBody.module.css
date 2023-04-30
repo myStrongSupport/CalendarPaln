@@ -1,0 +1,35 @@
+.calendar ul {
+  display: flex;
+  margin: auto;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.calendar .weeks {
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.calendar ul.weeks li {
+  width: calc(100% / 7);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.calendar .days a {
+  width: calc(100% / 7);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-top: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.calendar .days {
+  border-radius: 20px;
+  margin-top: 20px;
+}

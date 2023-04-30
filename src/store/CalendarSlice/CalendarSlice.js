@@ -23,40 +23,6 @@ const CalendarSlice = createSlice({
   name: "Calendar",
   initialState: initialState,
   reducers: {
-    // Render Calendar
-    // renderCalendar(state, payload) {
-    //   let firstDayofMonth = new Date(state.year, state.month, 1).getDay(); // get first day of month
-
-    //   let lastDateofMonth = new Date(state.year, state.month + 1, 0).getDate(); // get last date of month
-
-    //   let lastDayofMonth = new Date(
-    //     state.year,
-    //     state.month,
-    //     lastDateofMonth
-    //   ).getDay(); // get first day of month
-    //   console.log(lastDayofMonth);
-    //   let lastDateofLastMonth = new Date(state.year, state.month, 0).getDate(); // get last date of last month
-    //   let days = [];
-
-    //   // Add days from the last month
-    //   for (
-    //     let i = lastDateofLastMonth - firstDayofMonth + 1;
-    //     i <= lastDateofLastMonth;
-    //     i++
-    //   ) {
-    //     days.push(i);
-    //   }
-    //   // Add days from the current month
-    //   for (let i = 1; i <= lastDateofMonth; i++) {
-    //     days.push(i);
-    //   }
-    //   // Add days of next month
-    //   for (let i = lastDayofMonth; i < 6; i++) {
-    //     days.push(i - lastDayofMonth + 1);
-    //   }
-    //   state.days = days;
-    // },
-
     rendarCalendarPersian(state, payload) {
       // Getting first day of month 0-6
       const firstDayOfMonth = currentDate()
@@ -89,16 +55,17 @@ const CalendarSlice = createSlice({
           i <= lastDateOfLastMonth;
           i++
         ) {
-          days.push(i);
+          days.push({ day: i, typeDay: "last-month-day" });
         }
       }
       // Getting Current Days
       for (let i = 1; i <= lastDateOfMonth; i++) {
-        days.push(i);
+        days.push({ day: i, typeDay: "current-month" });
       }
 
       for (let i = lastDayOfWeek === 7 ? 0 : lastDayOfWeek; i < 6; i++) {
-        days.push(i - (lastDayOfWeek === 7 ? 0 : lastDayOfWeek) + 1);
+        let nextMonthDay = i - (lastDayOfWeek === 7 ? 0 : lastDayOfWeek) + 1;
+        days.push({ day: nextMonthDay, typeDay: "next-month-day" });
       }
 
       state.days = days;

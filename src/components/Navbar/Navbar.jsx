@@ -5,7 +5,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { BsInfoSquare } from "react-icons/bs";
 import { FaMosque } from "react-icons/fa";
-import img from "../../assets/Image/2.jpg";
+import img from "../../assets/Image/luffy.jpg";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);

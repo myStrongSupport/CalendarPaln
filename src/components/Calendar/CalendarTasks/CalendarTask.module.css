@@ -1,0 +1,88 @@
+.calendar-tasks-mention {
+  width: 50%;
+  padding: 67px 0 0 0;
+  margin-left: 20px;
+}
+
+.calendar-mention {
+  width: 100%;
+  margin: 0 auto 30px auto;
+  position: relative;
+  background: #ffffff;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-family: var(--font-text);
+  padding: 10px 30px;
+}
+
+.calendar-mention h4 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.calendar-mention p {
+  font-size: 3rem;
+}
+/* Add Task  */
+.show-tasks {
+  width: 100%;
+  height: 560px;
+  border-radius: 10px;
+  margin: auto;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+  padding: 0 20px;
+}
+.show-task-date {
+  display: flex;
+  align-items: center;
+}
+.show-task-date h3 {
+  width: 5%;
+  font-size: 3rem;
+  color: #fff;
+}
+.task-task-date_day {
+  width: 100%;
+  margin-right: 30px;
+  border-bottom: 1px solid #000;
+  padding-bottom: 30px;
+  color: #fff;
+}
+.show-task-date h4 {
+  font-size: 2rem;
+}
+
+.task-list-item {
+  width: 90%;
+  background-color: rgba(95, 158, 160, 0.297);
+  backdrop-filter: blur(5px);
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: flex-start;
+  padding: 15px 30px;
+  color: #000;
+  border-radius: 10px;
+  margin-top: 30px;
+  /* box-shadow: 0px 0px 17px 0px rgba(0, 0, 0, 0.75); */
+}
+.task-info span {
+  color: #fff;
+  font-size: small;
+}
+.task-list-item .task-info h4 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+.task-list-item .task-info p {
+  font-size: 1rem;
+  color: #fff;
+}
+.task-list-item .task-actions {
+  font-size: 1.5rem;
+  display: grid;
+  place-content: center;
+}

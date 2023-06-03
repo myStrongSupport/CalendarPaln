@@ -23,7 +23,7 @@ const Navbar = () => {
         </div>
         <ul className={classes.list}>
           <li>
-            <Link to="">
+            <Link to="salavat">
               <FaMosque />
             </Link>
           </li>

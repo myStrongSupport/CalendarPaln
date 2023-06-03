@@ -2,10 +2,40 @@
   cursor: pointer;
 }
 .head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px 30px 30px;
+  padding: 30px 0 70px 0;
   color: #fff;
-  font-family: var(--font-num);
+  position: relative;
+}
+
+.months {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  position: absolute;
+}
+
+.month {
+  /* font-size: 1.3rem; */
+  text-align: center;
+  user-select: none;
+  font-size: 1.5rem;
+  transition: 1s ease-in-out;
+}
+
+.notActive {
+  font-size: 1.3rem;
+  text-align: center;
+  user-select: none;
+  opacity: 0.5;
+  transition: 0.5s ease-out;
+}
+
+@keyframes month {
+  from {
+  }
+  to {
+  }
 }

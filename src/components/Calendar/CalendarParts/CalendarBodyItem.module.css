@@ -31,9 +31,14 @@
 .last-month-day,
 .next-month-day {
   color: #ffffff62 !important;
+  user-select: none;
+  pointer-events: none;
+}
+.last-month-day.item::before,
+.next-month-day.item::before {
+  background-color: #51515167;
 }
 
-.last-month-day:hover,
-.next-month-day:hover {
-  color: #00000064 !important;
+.current.item::before {
+  background-color: #ababab !important;
 }

@@ -1,0 +1,56 @@
+.hours {
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.3rem;
+  transition: 0.1s ease-in;
+  color: #fff;
+}
+.notActive {
+  text-align: center;
+  color: #fff;
+  opacity: 0.5;
+  font-size: 1rem;
+  transition: 0.1s ease-out;
+}
+
+.time-container {
+  position: relative;
+  width: 80px;
+  height: 90px;
+  cursor: pointer;
+}
+
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-14%);
+  right: 25%;
+  opacity: 0.3;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.4s ease;
+  z-index: 1;
+}
+
+.next:hover {
+  transform: translateY(-14%) scale(1.1);
+  opacity: 1;
+}
+
+.prev {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-14%);
+  left: 25%;
+  opacity: 0.3;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.prev:hover {
+  transform: translateY(-14%) scale(1.1);
+  opacity: 1;
+}

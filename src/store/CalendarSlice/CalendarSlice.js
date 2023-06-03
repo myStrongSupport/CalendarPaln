@@ -48,7 +48,6 @@ const CalendarSlice = createSlice({
       // Days
       let days = [];
       // Getting last Days of last month
-      console.log(firstDayOfMonth);
       if (firstDayOfMonth !== 6) {
         for (
           let i = lastDateOfLastMonth - firstDayOfMonth;
@@ -72,19 +71,7 @@ const CalendarSlice = createSlice({
     },
     // Change Month and Year Handler
     monthChange(state, action) {
-      if (action.payload === "prev") {
-        state.month--;
-        if (state.month < 0) {
-          state.month = 11;
-          state.year--;
-        }
-      } else {
-        state.month++;
-        if (state.month > 11) {
-          state.month = 0;
-          state.year++;
-        }
-      }
+      state.month = action.payload;
     },
   },
 });

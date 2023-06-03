@@ -1,23 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import classes from "./CalendarBody.module.css";
 import CalendarBodyItem from "./CalendarBodyItem";
 import { CalendarActions } from "../../../store/CalendarSlice/CalendarSlice";
 import { useDispatch, useSelector } from "react-redux";
 const CalendarBody = () => {
-  const dispatch = useDispatch();
   // Get Days
   const days = useSelector((state) => state.cal.days);
+  const date = useSelector((state) => state.cal);
+  const [curM, setCurM] = useState({});
+  const dispatch = useDispatch();
 
-  console.log(days.map);
-
+  useEffect(() => {
+    setCurM({ year: date.year, month: date.month });
+  }, []);
+  const onGetDayHandler = (day) => {
+    console.log(day + "jfiejfije");
+  };
   // Puplich days in li
   const daysEl = days.map((day, index) => (
-    <CalendarBodyItem key={index} day={day.day} type={day.typeDay} />
+    <CalendarBodyItem
+      key={index}
+      day={day.day}
+      type={day.typeDay}
+      curDate={curM}
+      onGetDay={onGetDayHandler.bind(null, day)}
+    />
   ));
 
   useEffect(() => {
     // Call to get Days
-    // dispatch(CalendarActions.renderCalendar());
     dispatch(CalendarActions.rendarCalendarPersian());
   }, [dispatch]);
 

@@ -42,18 +42,11 @@ const CalendarHead = () => {
     dispatch(CalendarActions.rendarCalendarPersian());
   }, [activeSlide, dispatch]);
 
-  // const monthHandler = (type) => {
-  //   dispatch(CalendarActions.monthChange(type));
-  //   dispatch(CalendarActions.rendarCalendarPersian());
-  // };
-
   const onSwiperChangeHandler = useCallback(
     (swiper) => {
       if (!isInit) {
         const newSlide = swiper.realIndex;
-        console.log(newSlide);
         setActiveSlide(() => newSlide);
-        console.log("inited");
       }
     },
     [isInit]

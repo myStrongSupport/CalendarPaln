@@ -1,3 +1,10 @@
+.show-task-item:first-child {
+  margin-top: 30px;
+}
+
+.show-task-item {
+  margin-top: 60px;
+}
 .show-task-date {
   display: flex;
   align-items: center;

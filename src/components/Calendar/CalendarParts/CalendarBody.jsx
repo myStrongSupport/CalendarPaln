@@ -3,6 +3,7 @@ import classes from "./CalendarBody.module.css";
 import CalendarBodyItem from "./CalendarBodyItem";
 import { CalendarActions } from "../../../store/CalendarSlice/CalendarSlice";
 import { useDispatch, useSelector } from "react-redux";
+
 const CalendarBody = () => {
   // Get Days
   const days = useSelector((state) => state.cal.days);
@@ -13,9 +14,7 @@ const CalendarBody = () => {
   useEffect(() => {
     setCurM({ year: date.year, month: date.month });
   }, []);
-  const onGetDayHandler = (day) => {
-    console.log(day + "jfiejfije");
-  };
+
   // Puplich days in li
   const daysEl = days.map((day, index) => (
     <CalendarBodyItem
@@ -23,7 +22,6 @@ const CalendarBody = () => {
       day={day.day}
       type={day.typeDay}
       curDate={curM}
-      onGetDay={onGetDayHandler.bind(null, day)}
     />
   ));
 

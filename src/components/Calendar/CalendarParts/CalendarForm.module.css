@@ -8,24 +8,23 @@
 }
 .form-header {
   text-align: center;
+  padding-top: 20px;
 }
 
 .form-header h4 {
-  font-size: 3rem;
-  margin-top: 20px;
+  font-size: 2rem;
 }
 
 .form-header p {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 .main-form {
-  padding: 45px 43px 50px;
+  padding: 40px;
 }
 /* time */
 .time {
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
+  padding: 0 20px;
 }
 
 .time .form-container {
@@ -39,7 +38,7 @@
 
 /* Text */
 .text {
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .text .form-container {
   position: relative;
@@ -64,6 +63,9 @@
   background: transparent;
   z-index: 1;
   padding: 20px 10px 10px;
+  border: 1px solid #fff;
+  border-right: 1px solid #ffffff00;
+  border-radius: 30px;
 }
 .text .form-container textarea {
   width: 100%;
@@ -76,18 +78,9 @@
   z-index: 1;
   padding: 20px 10px 10px;
   resize: none;
-}
-
-.form-container i {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #fff;
-  transition: 0.5s;
-  border-radius: 10px;
-  z-index: 0;
+  border: 1px solid #fff;
+  border-right: 1px solid #ffffff00;
+  border-radius: 30px;
 }
 
 .text .form-container input:valid ~ label,
@@ -109,16 +102,6 @@
 }
 .text .form-container textarea:focus {
   animation: hieght 1s ease alternate forwards;
-}
-
-.text .form-container input:valid ~ i,
-.text .form-container input:focus ~ i {
-  height: 100%;
-}
-
-.text .form-container textarea:valid ~ i,
-.text .form-container textarea:focus ~ i {
-  height: 100%;
 }
 
 .color {
@@ -147,15 +130,63 @@
 }
 
 .main-form button {
-  background: linear-gradient(95deg, rgb(21, 107, 142), rgb(11, 148, 202));
-  border: none;
+  border: 1px solid #ffffff72;
   outline: none;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding: 15px 25px;
   border-radius: 10px;
   color: #fff;
-  width: 90%;
   margin: auto;
   display: block;
   cursor: pointer;
+  position: relative;
+  width: 90%;
+  overflow: hidden;
+  background-color: transparent;
+  transition: all 0.5s ease-in;
+  z-index: 1;
+}
+
+.main-form button span {
+  z-index: 1;
+}
+
+.main-form button:hover {
+  border: 1px solid #0089a14d;
+}
+.main-form button::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  clip-path: circle(0 at 0 0);
+  background: linear-gradient(45deg, #ffffff00, #0089a14d);
+  transition: 1s ease;
+  backdrop-filter: blur(3px);
+  z-index: -1;
+}
+.main-form button:hover::after {
+  clip-path: circle(145% at 0 0);
+}
+
+@keyframes ani {
+  0% {
+    clip-path: circle(0 at 0 0);
+  }
+  10% {
+    clip-path: circle(0 at 0 0);
+  }
+  50% {
+    clip-path: circle(141.2% at 0 0);
+  }
+  60% {
+    clip-path: circle(141.9% at 100% 100%);
+  }
+  100% {
+    clip-path: circle(0.1% at 100% 69%);
+  }
 }

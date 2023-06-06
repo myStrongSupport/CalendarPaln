@@ -12,16 +12,41 @@ const CalendarForm = () => {
   const [min, setMin] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [formValid, setFormValid] = useState(false);
 
+  // Get Housrs
   const hours = Array.from({ length: 24 }, (_, index) => {
     const hour = index.toString().padStart(2, "0");
     return { value: hour };
   });
-
+  // Get Minutes
   const minutes = Array.from({ length: 60 }, (_, index) => {
     const minute = index.toString().padStart(2, "0");
     return { value: minute };
   });
+
+  // Months
+  const shamsiMonths = [
+    "فروردین",
+    "اردیبهشت",
+    "خرداد",
+    "تیر",
+    "مرداد",
+    "شهریور",
+    "مهر",
+    "آبان",
+    "آذر",
+    "دی",
+    "بهمن",
+    "اسفند",
+  ];
+  // Get DAy month year from params
+  const dateParams = params.date;
+
+  const dayOfWeek = dateParams.split("_")[3];
+  const day = dateParams.split("_")[2];
+  const month = dateParams.split("_")[1];
+  const year = dateParams.split("_")[0];
 
   const colors = [
     { color: "red" },
@@ -31,12 +56,6 @@ const CalendarForm = () => {
     { color: "orange" },
   ];
   // Handlers
-  const hourChangeHandler = (e) => {
-    setHour((prev) => e.target.value);
-  };
-  const minChangeHandler = (e) => {
-    setMin((prev) => e.target.value);
-  };
   const titleChangeHandler = (e) => {
     setTitle(e.target.value);
   };
@@ -44,8 +63,10 @@ const CalendarForm = () => {
     setDescription(e.target.value);
   };
 
+  // Form Submit hander
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    // Form Validitity
     let formValidity =
       title.trim().length === 0 || description.trim().length === 0;
     if (formValidity) {
@@ -64,14 +85,18 @@ const CalendarForm = () => {
       dispatch(tasksActions.addTask(DATE_TASK));
     }
   };
-
   return (
     <div className={classes["form"]}>
+      {/* Header */}
       <div className={classes["form-header"]}>
-        <h4>Monday</h4>
-        <p>January 03 2023</p>
+        <h4>{dayOfWeek}</h4>
+        <p>
+          {day} {shamsiMonths[month - 1]} {year}
+        </p>
       </div>
+      {/* Form */}
       <Form onSubmit={onSubmitHandler} className={classes["main-form"]}>
+        {/* Time */}
         <div className={classes.time}>
           <div className={classes["form-container"]}>
             <CalendarTimeSwiper className="swiper1" timeType={hours} />
@@ -80,21 +105,25 @@ const CalendarForm = () => {
             <CalendarTimeSwiper className="swiper2" timeType={minutes} />
           </div>
         </div>
+        {/* Title */}
         <div className={classes.text}>
           <div className={classes["form-container"]}>
             <input
               type="text"
               name="title"
               id="title"
+              required
               onChange={titleChangeHandler}
             />
             <label>عنوان</label>
             <i></i>
           </div>
+          {/* Text Area */}
           <div className={classes["form-container"]}>
             <textarea
               name="description"
               id="description"
+              required
               onChange={descriptionChangeHandler}
             ></textarea>
             <label>توضیح مختصر</label>
@@ -113,7 +142,9 @@ const CalendarForm = () => {
             </div>
           </div>
         </div>
-        <button>اضافه کردن کار</button>
+        <button>
+          <span>اضافه کارکردن</span>
+        </button>
       </Form>
     </div>
   );

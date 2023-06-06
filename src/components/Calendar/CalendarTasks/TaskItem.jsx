@@ -36,16 +36,16 @@ const TaskItem = ({ infoTask }) => {
   ));
 
   return (
-    <>
+    <div className={classes["show-task-item"]}>
       <div className={classes["show-task-date"]}>
         <h3>{day}</h3>
         <div className={classes["task-task-date_day"]}>
-          <h4>{shamsiMonths[month]}</h4>
+          <h4>{shamsiMonths[month - 1]}</h4>
           <p>شما {numberOfTasks} فعالیت دارید </p>
         </div>
       </div>
       <ul className={classes["tasks-list"]}>{tasksOfDay}</ul>
-    </>
+    </div>
   );
 };
 

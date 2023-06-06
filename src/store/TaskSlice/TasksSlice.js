@@ -19,10 +19,15 @@ const TasksSlice = createSlice({
       }
 
       state.tasks.sort((a, b) => {
-        const dateA = new Date(a.date.replace(/_/g, "-")).getTime();
-        const dateB = new Date(b.date.replace(/_/g, "-")).getTime();
+        const newA = a.date.replace(/_[^_]+$/, "");
+        const newB = b.date.replace(/_[^_]+$/, "");
+        const dateA = new Date(newA.replace(/_/g, "-")).getTime();
+        const dateB = new Date(newB.replace(/_/g, "-")).getTime();
         return dateA - dateB;
       });
+    },
+    replaceTask(state, action) {
+      state.tasks = action.payload === null ? [] : action.payload;
     },
   },
 });

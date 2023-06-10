@@ -8,11 +8,20 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import classes from "./CalendarTimeSwiper.module.css";
 
-const CalendarTimeSwiper = ({ timeType, className }) => {
+const CalendarTimeSwiper = ({ timeType, onChange, className }) => {
+  const handleSlideChange = (swiper) => {
+    const activeSlide = swiper.slides[swiper.activeIndex].firstChild.innerText;
+
+    onChange(activeSlide);
+  };
+
   const time = timeType.map((item) => (
     <SwiperSlide key={item.value}>
       {({ isActive }) => (
-        <div className={isActive ? classes.hours : classes.notActive}>
+        <div
+          value={item.value}
+          className={isActive ? classes.hours : classes.notActive}
+        >
           {item.value}
         </div>
       )}
@@ -39,6 +48,7 @@ const CalendarTimeSwiper = ({ timeType, className }) => {
           ...customNavigationStyles, // Apply custom navigation styles
         }}
         modules={[Navigation]}
+        onSlideChange={handleSlideChange}
         className={`time ${classes["time-container"]}`}
       >
         {time}

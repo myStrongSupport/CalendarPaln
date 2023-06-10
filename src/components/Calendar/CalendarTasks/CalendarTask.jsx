@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import classes from "./CalendarTask.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import TaskItem from "./TaskItem.jsx";
@@ -45,19 +45,15 @@ const CalendarTask = () => {
       dispatch(tasksActions.replaceTask(data));
     };
     getTasks();
-  }, []);
-
-  useEffect(() => {}, []);
+  }, [dispatch]);
 
   return (
-    <>
-      <div className={classes["calendar-tasks-mention"]}>
-        <div className={classes["calendar-mention"]}>
-          <h4>یارب العالمین</h4>
-        </div>
-        <div className={classes["show-tasks"]}>{TaskItems}</div>
+    <div className={classes["calendar-tasks-mention"]}>
+      <h1>برنامه های من</h1>
+      <div className={`${classes["show-tasks"]}`}>
+        <div>{TaskItems}</div>
       </div>
-    </>
+    </div>
   );
 };
 

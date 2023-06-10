@@ -16,16 +16,19 @@
   justify-content: center;
   position: relative;
   margin-top: 20px;
-  color: #fff;
+  color: var(--color);
 }
 
-.calendar .days a {
+.calendar .days div {
   width: calc(100% / 7);
   display: flex;
   justify-content: center;
   position: relative;
   margin-top: 20px;
-  color: #fff;
+}
+
+.calendar .days div a {
+  color: var(--color);
   text-decoration: none;
 }
 

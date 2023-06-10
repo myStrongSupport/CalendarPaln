@@ -1,10 +1,12 @@
+.show-task-item {
+  margin-top: 60px;
+  position: relative;
+}
+
 .show-task-item:first-child {
   margin-top: 30px;
 }
 
-.show-task-item {
-  margin-top: 60px;
-}
 .show-task-date {
   display: flex;
   align-items: center;
@@ -12,14 +14,34 @@
 .show-task-date h3 {
   width: 5%;
   font-size: 3rem;
-  color: #fff;
+  color: var(--color);
+  position: relative;
+}
+
+.show-task-date h3::after {
+  content: "\2688";
+  font-size: 0.8rem;
+  position: absolute;
+  color: var(--color);
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .task-task-date_day {
   width: 100%;
   margin-right: 30px;
-  border-bottom: 1px solid #000;
   padding-bottom: 30px;
-  color: #fff;
+  color: var(--color);
+  position: relative;
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+  bottom: 0;
+  border-radius: 10%;
 }
 .show-task-date h4 {
   font-size: 2rem;
@@ -56,4 +78,13 @@
   font-size: 1.5rem;
   display: grid;
   place-content: center;
+}
+
+.show-task-item .task-dot {
+  position: absolute;
+  width: 2px;
+  height: calc(100% + 60px);
+  top: 0;
+  right: -10px;
+  background-color: #000;
 }

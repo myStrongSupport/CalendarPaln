@@ -1,7 +1,57 @@
 import React from "react";
 import { BiEdit } from "react-icons/bi";
 import classes from "./TaskItem.module.css";
+import { motion } from "framer-motion";
 const TaskItem = ({ infoTask }) => {
+  const itemHead = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+    },
+    show: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
+  const itemMonth = {
+    hidden: {
+      x: 100,
+      opacity: 0,
+    },
+    show: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: 0.5,
+      },
+    },
+  };
+  const contaienr = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        delay: 1,
+        when: "beforeChildren",
+        staggerchildren: 0.5,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      y: -100,
+      opacity: 0,
+    },
+    show: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
   const shamsiMonths = [
     "فروردین",
     "اردیبهشت",
@@ -21,7 +71,11 @@ const TaskItem = ({ infoTask }) => {
   const month = infoTask.date.split("_")[1];
   const numberOfTasks = infoTask.tasks.length;
   const tasksOfDay = infoTask.tasks.map((task, index) => (
-    <li key={index} className={classes["task-list-item"]}>
+    <motion.li
+      variants={item}
+      key={index}
+      className={classes["task-list-item"]}
+    >
       <div className={classes["task-info"]}>
         <span>
           {task.hour}:{task.min}
@@ -32,20 +86,43 @@ const TaskItem = ({ infoTask }) => {
       <div className={classes["task-actions"]}>
         <BiEdit />
       </div>
-    </li>
+    </motion.li>
   ));
 
   return (
-    <div className={classes["show-task-item"]}>
+    <motion.div className={classes["show-task-item"]}>
+      <span className={classes["task-dot"]}></span>
       <div className={classes["show-task-date"]}>
-        <h3>{day}</h3>
-        <div className={classes["task-task-date_day"]}>
+        <motion.h3 variants={itemHead} initial="hidden" animate="show">
+          {day}
+        </motion.h3>
+        <motion.div
+          variants={itemMonth}
+          initial="hidden"
+          animate="show"
+          className={classes["task-task-date_day"]}
+        >
           <h4>{shamsiMonths[month - 1]}</h4>
           <p>شما {numberOfTasks} فعالیت دارید </p>
-        </div>
+          {/* <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{
+              delay: 0.7,
+            }}
+            className={classes.line}
+          ></motion.div> */}
+        </motion.div>
       </div>
-      <ul className={classes["tasks-list"]}>{tasksOfDay}</ul>
-    </div>
+      <motion.ul
+        variants={contaienr}
+        initial="hidden"
+        animate="show"
+        className={classes["tasks-list"]}
+      >
+        {tasksOfDay}
+      </motion.ul>
+    </motion.div>
   );
 };
 

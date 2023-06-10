@@ -1,25 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import classes from "./Calendar.module.css";
 import CalendarTask from "./CalendarTasks/CalendarTask";
 import CalendarYear from "./CalendarTasks/CalendarYear";
-import { Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
-let init = true;
-const Calendar = ({ element }) => {
-  const myTasks = useSelector((state) => state.tasks.tasks);
+import { useLocation, useOutlet } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+
+const Calendar = () => {
+  const location = useLocation();
+  const AnimatedOutlet = () => {
+    const o = useOutlet();
+    const [outlet] = useState(o);
+
+    return <>{outlet}</>;
+  };
 
   return (
     <section className={classes["calendar-container"]}>
       <div className={classes.container}>
-        {/* Calendar */}
-        <div className={classes.wrapper}>
-          <Outlet />
-        </div>
-        {/* Date Design */}
         <div className={classes["calendar-image"]}>
-          <CalendarTask />
           <CalendarYear />
+          <div className={classes.wrapper}>
+            <AnimatePresence mode="wait">
+              <motion.div layout key={location.pathname}>
+                <AnimatedOutlet />
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
+        <CalendarTask />
       </div>
     </section>
   );

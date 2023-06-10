@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const moment = require("moment-jalaali");
 const currentDate = moment;
 
-const CalendarBodyItem = ({ day, type, curDate, onGetDay }) => {
+const CalendarBodyItem = ({ day, type, curDate }) => {
   // Get Time
   const time = useSelector((state) => state.cal);
   const currentDay = time.day;
@@ -37,11 +37,17 @@ const CalendarBodyItem = ({ day, type, curDate, onGetDay }) => {
       ? classes["current"]
       : null
   }`;
+
+  // onClickPlaySound
+  const onclickPlaySound = () => {
+    // const audio = new Audio(sound);
+    // audio.play();
+  };
   return (
     <Link
       className={classes[`${type}`]}
       to={`${time.year}_${time.month + 1}_${day}_${dayOfWeeks}`}
-      onClick={onGetDay}
+      onClick={onclickPlaySound}
     >
       <li className={typeDayClasses}>{day}</li>
     </Link>

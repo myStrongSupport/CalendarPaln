@@ -7,6 +7,7 @@ import classes from "./CalendarHead.module.css";
 import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { CalendarActions } from "../../../store/CalendarSlice/CalendarSlice";
+import { motion as m } from "framer-motion";
 const CalendarHead = () => {
   const [isInit, setIsInit] = useState(true);
   const month = useSelector((state) => state.cal.month);
@@ -53,7 +54,7 @@ const CalendarHead = () => {
   );
 
   return (
-    <div className={classes.head}>
+    <m.div layout className={classes.head}>
       <div className={classes.months}>
         <Swiper
           slidesPerView={3}
@@ -78,7 +79,7 @@ const CalendarHead = () => {
           })}
         </Swiper>
       </div>
-    </div>
+    </m.div>
   );
 };
 

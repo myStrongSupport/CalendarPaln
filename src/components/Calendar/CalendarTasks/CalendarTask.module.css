@@ -1,7 +1,13 @@
 .calendar-tasks-mention {
-  width: 50%;
-  padding: 67px 0 0 0;
-  margin-left: 20px;
+  width: 40%;
+  /* padding: 67px 0 0 0; */
+  position: relative;
+}
+
+.calendar-tasks-mention h1 {
+  font-size: 3rem;
+  padding: 3px 0;
+  padding-right: 30px;
 }
 
 .calendar-mention {
@@ -27,12 +33,13 @@
 }
 /* Add Task  */
 .show-tasks {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
+  position: relative;
   margin: auto;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
-  padding: 0 20px;
-  overflow-y: scroll;
+  height: 100%;
+  padding: 0 20px 0 80px;
   padding-bottom: 140px;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  overflow-y: auto;
 }

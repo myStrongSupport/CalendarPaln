@@ -3,9 +3,11 @@
 :root {
   --font-title: "Alkalami", serif;
   --font-text: "Harmattan", sans-serif;
-  --font-main: "Harmattan", sans-serif;
-  --font-num: num;
-  --font-num2: num2;
+  --font-main: IranReqular;
+  --font-main-bold: IranBold;
+  --font-num: IranBoldNumber;
+  --font-num2: IranRegularNumber;
+  --color: #000;
 }
 * {
   margin: 0;
@@ -33,6 +35,22 @@ body {
 @font-face {
   font-family: num2;
   src: url(assets//font/BTabssom.ttf);
+}
+@font-face {
+  font-family: IranReqular;
+  src: url(assets//font/Iransans/IRANSansXFaNum-Regular.ttf);
+}
+@font-face {
+  font-family: IranBold;
+  src: url(assets//font/Iransans/IRANSansXFaNum-Bold.ttf);
+}
+@font-face {
+  font-family: IranRegularNumber;
+  src: url(assets//font/Iransans/IranSansX/Farsinumerals/IRANSansXFaNum-Regular.ttf);
+}
+@font-face {
+  font-family: IranBoldNumber;
+  src: url(assets//font/Iransans/IranSansX/Farsinumerals/IRANSansXFaNum-Bold.ttf);
 }
 
 .video {

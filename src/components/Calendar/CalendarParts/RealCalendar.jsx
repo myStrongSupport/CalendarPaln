@@ -1,11 +1,14 @@
 import CalendarHead from "./CalendarHead";
 import CalendarBody from "./CalendarBody";
 import classes from "./RealCalendar.module.css";
-import { MotionConfig, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import useMeasure from "react-use-measure";
+import { useState } from "react";
+import SideBarVideo from "../../Video/SideBarVideo";
 
 const RealCalendar = () => {
   const [ref, { height }] = useMeasure();
+  const [sidebarIsOpen, setSideBarIsOpen] = useState(false);
 
   const firstAnimate = {
     hidden: {
@@ -26,8 +29,13 @@ const RealCalendar = () => {
     },
   };
 
+  const onSideBarHandler = () => {
+    setSideBarIsOpen((prev) => !prev);
+  };
+
   return (
     <MotionConfig>
+      <AnimatePresence>{sidebarIsOpen && <SideBarVideo />}</AnimatePresence>
       <motion.div
         variants={firstAnimate}
         initial="hidden"
@@ -36,7 +44,9 @@ const RealCalendar = () => {
         className={classes.calendar}
       >
         <div ref={ref}>
-          <div className={classes.bgChange}></div>
+          <div className={classes.bgChange}>
+            <span onClick={onSideBarHandler}></span>
+          </div>
           <CalendarHead />
           <CalendarBody />
         </div>

@@ -1,0 +1,28 @@
+.videoList {
+  background: linear-gradient(
+    45deg,
+    rgba(1, 0, 45, 1) 0%,
+    rgba(0, 45, 44, 1) 48%,
+    rgba(0, 49, 86, 1) 100%
+  );
+  height: 60%;
+  color: white;
+}
+
+.list {
+  list-style: none;
+  padding-top: 90px;
+}
+
+.list li {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 15px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.list li:hover {
+  background-color: #fff;
+  color: var(--color);
+}

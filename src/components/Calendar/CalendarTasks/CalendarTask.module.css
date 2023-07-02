@@ -43,3 +43,27 @@
   flex-direction: column;
   overflow-y: auto;
 }
+
+.line::after {
+  content: "";
+  width: 2px;
+  height: 100%;
+  right: 10px;
+  border-radius: 30px;
+  background-color: #000;
+  position: absolute;
+}
+
+.empty {
+  height: 80vh;
+  display: grid;
+  place-content: center;
+  /* background-color: red; */
+}
+
+.empty p {
+  font-size: 2rem;
+  text-align: center;
+  font-family: var(--font-main-bold);
+  color: #aeaeae;
+}

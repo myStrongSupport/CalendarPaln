@@ -49,7 +49,7 @@
 
 .task-list-item {
   width: 90%;
-  background-color: rgba(95, 158, 160, 0.297);
+  background-color: rgba(95, 158, 160, 0.553);
   backdrop-filter: blur(5px);
   margin-right: auto;
   display: flex;

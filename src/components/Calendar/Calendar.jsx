@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import classes from "./Calendar.module.css";
 import CalendarTask from "./CalendarTasks/CalendarTask";
-import CalendarYear from "./CalendarTasks/CalendarYear";
 import { useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -18,7 +17,6 @@ const Calendar = () => {
     <section className={classes["calendar-container"]}>
       <div className={classes.container}>
         <div className={classes["calendar-image"]}>
-          <CalendarYear />
           <div className={classes.wrapper}>
             <AnimatePresence mode="wait">
               <motion.div layout key={location.pathname}>

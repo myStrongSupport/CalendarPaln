@@ -13,6 +13,9 @@ const CalendarTask = () => {
     return <TaskItem key={index} infoTask={task} />;
   });
 
+  const isEmpty = myTasks.length === 0;
+  console.log(isEmpty);
+
   // Sending Cart Date
   useEffect(() => {
     const sendDate = () => {
@@ -50,8 +53,16 @@ const CalendarTask = () => {
   return (
     <div className={classes["calendar-tasks-mention"]}>
       <h1>برنامه های من</h1>
-      <div className={`${classes["show-tasks"]}`}>
-        <div>{TaskItems}</div>
+      <div className={`${classes["show-tasks"]} ${classes.line}`}>
+        <div>
+          {isEmpty ? (
+            <div className={classes.empty}>
+              <p>شما هیچ برنامه را وارد نکردید</p>
+            </div>
+          ) : (
+            TaskItems
+          )}
+        </div>
       </div>
     </div>
   );

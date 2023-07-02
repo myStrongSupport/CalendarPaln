@@ -1,3 +1,6 @@
+.calendar {
+  position: relative;
+}
 .calendar ul {
   display: flex;
   margin: auto;

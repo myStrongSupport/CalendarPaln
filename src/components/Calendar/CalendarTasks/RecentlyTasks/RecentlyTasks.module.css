@@ -1,0 +1,19 @@
+.list {
+  list-style: none;
+  padding-top: 100px;
+  position: relative;
+  padding: 60px 10px;
+  height: 473px;
+  overflow: hidden;
+}
+.list::after {
+  content: "";
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(0, #10001d, transparent);
+  pointer-events: none;
+}

@@ -1,24 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Alkalami&family=Harmattan:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Alkalami&family=Harmattan:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap");
 :root {
   --font-title: "Alkalami", serif;
   --font-text: "Harmattan", sans-serif;
   --font-main: IranReqular;
   --font-main-bold: IranBold;
+  --font-Kalmeh: Kalameh;
   --font-num: IranBoldNumber;
   --font-num2: IranRegularNumber;
-  --color: #000;
+  --font-num3: "Plus Jakarta Sans", sans-serif;
+  --color: #fff;
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  overflow: hidden;
+}
 body {
   direction: rtl;
   /* background: linear-gradient(130deg, #2e365d 30%, #435da2, #5c7ecf); */
   font-family: var(--font-text);
   overflow: hidden;
+  color: var(--color);
 }
 
 .container {
@@ -36,6 +43,7 @@ body {
   font-family: num2;
   src: url(assets//font/BTabssom.ttf);
 }
+/* IRan Yekan */
 @font-face {
   font-family: IranReqular;
   src: url(assets//font/Iransans/IRANSansXFaNum-Regular.ttf);
@@ -51,6 +59,12 @@ body {
 @font-face {
   font-family: IranBoldNumber;
   src: url(assets//font/Iransans/IranSansX/Farsinumerals/IRANSansXFaNum-Bold.ttf);
+}
+/* Kalameh */
+@font-face {
+  font-family: Kalameh;
+  src: url(assets/font/Madthi/Tiam.ttf);
+  font-weight: 100;
 }
 
 .video {

@@ -1,7 +1,12 @@
 .calendar-tasks-mention {
-  width: 40%;
-  /* padding: 67px 0 0 0; */
-  position: relative;
+  width: 45%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.calendar-tasks-mention h1 {
+  color: var(--color);
 }
 
 .calendar-tasks-mention h1 {

@@ -1,82 +1,113 @@
 .calendar-day-task {
-  width: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* background-color: #fff; */
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
-.calendar-day-task ol {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.calendar-day-task ol li {
-  margin: 30px;
-  color: #fff;
-}
-.year {
+
+.container {
   width: 100%;
   height: 100%;
+  padding-inline: 100px;
+}
+
+.date {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  /* background-color: red; */
+}
+.year {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14rem;
+  position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  align-items: center;
 }
-.year div {
-  position: relative;
-  background-color: #ffffff2a;
-  width: 100%;
-  height: 165px;
+/* Inside H1 */
+.year .box {
+  width: 315px;
+  height: 200px;
   overflow: hidden;
-  backdrop-filter: blur(5px);
-  transition: all 0.3s ease-in-out;
+  position: relative;
+  transform: rotate(-45deg);
+  text-align: center;
+  font-family: var(--font-num3) !important;
+  margin-right: 10px;
 }
-
-.year div:nth-child(1) {
-  z-index: 0;
-  box-shadow: 0px -18px 34px -17px rgba(0, 0, 0, 0.75);
-}
-.year div:nth-child(2) {
-  z-index: 1;
-  box-shadow: 0px -18px 34px -17px rgba(0, 0, 0, 0.75);
-}
-.year div:nth-child(3) {
-  z-index: 2;
-  box-shadow: 0px -18px 34px -17px rgba(0, 0, 0, 0.75);
-}
-.year div:nth-child(4) {
-  z-index: 3;
-  box-shadow: 0px -18px 34px -17px rgba(0, 0, 0, 0.75);
-}
-.year:hover div:nth-child(1) {
-  animation: shadow 0.3s ease-in 0.8s alternate forwards;
-}
-.year:hover div:nth-child(2) {
-  animation: shadow 0.3s ease-in 0.6s alternate forwards;
-}
-.year:hover div:nth-child(3) {
-  animation: shadow 0.3s ease-in 0.4s alternate forwards;
-}
-.year:hover div:nth-child(4) {
-  animation: shadow 0.3s ease-in 0.2s alternate forwards;
-}
-.year div span {
+.box .text {
   position: absolute;
-  top: -250px;
-  left: 70px;
-  font-size: 25rem;
-  display: inline-block;
-  width: fit-content;
-  transform-origin: center;
-  transform: rotate(90deg);
-  transition: all 0.3s ease-in;
-  color: #000000;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -58%) rotate(45deg);
+  background: linear-gradient(45deg, #0014ff, #ff2cdf);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient 5s linear infinite;
+}
+.firstLetter {
+  font-size: 15rem;
+}
+.box::after {
+  content: "";
+  position: absolute;
+  width: 49%;
+  height: 1px;
+  background-color: #ffffff;
+  top: -1px;
+  border-radius: 10px;
+  left: 0%;
+  transform: translateX(24%);
+  box-shadow: 3px 0px 20px 5px rgb(0 0 0);
+}
+.box::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 1px;
+  background-color: #ffffff;
+  bottom: -1px;
+  left: 0%;
+  transform: translateX(59%);
+  z-index: 1;
+  box-shadow: -9px -1px 15px 8px rgb(0 0 0 / 77%);
 }
 
-@keyframes shadow {
-  0% {
-    box-shadow: 0px -18px 34px -17px rgba(0, 0, 0, 0.75);
-  }
+.date .month-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: -50px;
+  padding-top: 157px;
+}
+
+.container .date .month {
+  font-size: 3rem;
+  font-family: var(--font-main-bold);
+  z-index: 999;
+}
+.container .date .day {
+  font-size: 1.3rem;
+  font-family: var(--font-num3);
+}
+
+.shape:hover {
+  border-radius: 70% 30% 34% 66% / 64% 25% 75% 36%;
+}
+
+@keyframes gradient {
+  0%,
   100% {
-    box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, 0.75);
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }

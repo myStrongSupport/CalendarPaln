@@ -39,9 +39,8 @@ const CalendarBodyItem = ({ day, type, curDate }) => {
   }`;
 
   // onClickPlaySound
-  const onclickPlaySound = () => {
-    // const audio = new Audio(sound);
-    // audio.play();
+  const onclickPlaySound = (e) => {
+    // console.log(e.target);
   };
   return (
     <Link

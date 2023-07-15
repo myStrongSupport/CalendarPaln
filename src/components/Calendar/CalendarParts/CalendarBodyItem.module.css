@@ -1,7 +1,7 @@
 .item {
   z-index: 1;
   cursor: pointer;
-  padding: 10px;
+  padding: 13px 10px 10px;
   font-size: 1rem;
   font-family: var(--font-num2);
   user-select: none;
@@ -39,6 +39,9 @@
   background-color: #51515167;
 }
 
+.current.item {
+  color: #fff;
+}
 .current.item::before {
-  background-color: #ababab !important;
+  background-color: rgb(182, 210, 0) !important;
 }

@@ -1,0 +1,43 @@
+.parentLight {
+  position: absolute;
+  /* background-color: red; */
+}
+.light {
+  display: inline-block;
+  animation: lighting 10s ease-in-out infinite;
+  color: #fff;
+  /* background-color: red; */
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(
+    circle,
+    #fff,
+    rgb(255, 255, 255, 0.8),
+    rgb(255, 255, 255, 0.4),
+    rgb(255, 255, 255, 0.3),
+    rgb(255, 255, 255, 0.2),
+    rgb(255, 255, 255, 0.1),
+    rgb(255, 255, 255, 0.1),
+    rgb(255, 255, 255, 0),
+    rgb(255, 255, 255, 0),
+    rgb(255, 255, 255, 0),
+    rgb(255, 255, 255, 0)
+  );
+  opacity: 0;
+}
+
+@keyframes lighting {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-20vh, -50vh);
+  }
+}

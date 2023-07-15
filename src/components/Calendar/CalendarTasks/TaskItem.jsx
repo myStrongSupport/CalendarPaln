@@ -104,14 +104,6 @@ const TaskItem = ({ infoTask }) => {
         >
           <h4>{shamsiMonths[month - 1]}</h4>
           <p>شما {numberOfTasks} فعالیت دارید </p>
-          {/* <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{
-              delay: 0.7,
-            }}
-            className={classes.line}
-          ></motion.div> */}
         </motion.div>
       </div>
       <motion.ul

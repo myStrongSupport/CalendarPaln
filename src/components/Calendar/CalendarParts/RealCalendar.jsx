@@ -3,25 +3,31 @@ import CalendarBody from "./CalendarBody";
 import classes from "./RealCalendar.module.css";
 import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import useMeasure from "react-use-measure";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SideBarVideo from "../../Video/SideBarVideo";
 
+let contolDelay = true;
 const RealCalendar = () => {
   const [ref, { height }] = useMeasure();
   const [sidebarIsOpen, setSideBarIsOpen] = useState(false);
 
   const firstAnimate = {
     hidden: {
-      x: 1000,
+      y: 50,
       opacity: 0,
     },
     show: {
-      x: 0,
+      y: 0,
       opacity: 1,
       height: height + 90,
 
       transition: {
-        x: { delay: 0.4 },
+        type: "spring",
+        duration: 1,
+        delay: contolDelay ? 8 : 0.5,
+        height: {
+          delay: 0.1,
+        },
       },
     },
     exit: {
@@ -29,6 +35,14 @@ const RealCalendar = () => {
     },
   };
 
+  useEffect(() => {
+    if (contolDelay) {
+      setTimeout(() => {
+        contolDelay = false;
+      }, 8000);
+      return;
+    }
+  }, []);
   const onSideBarHandler = () => {
     setSideBarIsOpen((prev) => !prev);
   };
@@ -45,7 +59,7 @@ const RealCalendar = () => {
       >
         <div ref={ref}>
           <div className={classes.bgChange}>
-            <span onClick={onSideBarHandler}></span>
+            <div onClick={onSideBarHandler}></div>
           </div>
           <CalendarHead />
           <CalendarBody />

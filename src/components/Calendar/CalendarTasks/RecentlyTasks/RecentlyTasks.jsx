@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./RecentlyTasks.module.css";
 import RecentTask from "./RecentTask";
 
@@ -27,6 +27,33 @@ const defaulText = [
 ];
 const RecentlyTasks = (props) => {
   const [RecentText, setRecentText] = useState(defaulText);
+  const [intervalId, setIntervalId] = useState(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRecentText((prevText) => {
+        const [first, ...rest] = prevText;
+        return [...rest, first];
+      });
+    }, 5000);
+    setIntervalId(interval);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleMouseEnter = () => {
+    clearInterval(intervalId);
+  };
+
+  const handleMouseLeave = () => {
+    const interval = setInterval(() => {
+      setRecentText((prevText) => {
+        const [first, ...rest] = prevText;
+        return [...rest, first];
+      });
+    }, 5000);
+
+    setIntervalId(interval);
+  };
 
   const Items = RecentText.map((item, index) => {
     return (
@@ -36,6 +63,8 @@ const RecentlyTasks = (props) => {
         id={index}
         color={item.color}
         paragraph={item.paragraph}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       />
     );
   });

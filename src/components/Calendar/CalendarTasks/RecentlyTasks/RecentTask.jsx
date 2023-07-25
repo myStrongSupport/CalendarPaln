@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import classes from "./RecentTask.module.css";
-import { MotionConfig, useAnimate, usePresence, motion } from "framer-motion";
+import { MotionConfig, useAnimate, motion } from "framer-motion";
 import useMeasure from "react-use-measure";
 const RecentTask = (props) => {
   const [ref, { height }] = useMeasure();

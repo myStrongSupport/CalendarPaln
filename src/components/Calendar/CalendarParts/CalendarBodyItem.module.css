@@ -36,7 +36,7 @@
 }
 .last-month-day.item::before,
 .next-month-day.item::before {
-  background-color: #51515167;
+  background-color: #51515167 !important;
 }
 
 .current.item {

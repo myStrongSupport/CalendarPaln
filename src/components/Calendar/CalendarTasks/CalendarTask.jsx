@@ -3,6 +3,7 @@ import classes from "./CalendarTask.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import TaskItem from "./TaskItem.jsx";
 import { tasksActions } from "../../../store/TaskSlice/TasksSlice";
+import { AnimatePresence, MotionConfig } from "framer-motion";
 
 let init = true;
 const CalendarTask = () => {
@@ -14,7 +15,6 @@ const CalendarTask = () => {
   });
 
   const isEmpty = myTasks.length === 0;
-  console.log(isEmpty);
 
   // Sending Cart Date
   useEffect(() => {
@@ -51,20 +51,24 @@ const CalendarTask = () => {
   }, [dispatch]);
 
   return (
-    <div className={classes["calendar-tasks-mention"]}>
-      <h1>برنامه های من</h1>
-      <div className={`${classes["show-tasks"]} ${classes.line}`}>
-        <div>
-          {isEmpty ? (
-            <div className={classes.empty}>
-              <p>شما هیچ برنامه را وارد نکردید</p>
-            </div>
-          ) : (
-            TaskItems
-          )}
+    <MotionConfig>
+      <div className={classes["calendar-tasks-mention"]}>
+        <h1>برنامه های من</h1>
+        <div className={`${classes["show-tasks"]} ${classes.line}`}>
+          <div>
+            <AnimatePresence>
+              {isEmpty ? (
+                <div className={classes.empty}>
+                  <p>شما هیچ برنامه را وارد نکردید</p>
+                </div>
+              ) : (
+                TaskItems
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
-    </div>
+    </MotionConfig>
   );
 };
 

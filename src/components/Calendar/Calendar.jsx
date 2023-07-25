@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import classes from "./Calendar.module.css";
-import CalendarTask from "./CalendarTasks/CalendarTask";
-import CalendarYear from "./CalendarTasks/CalendarYear";
+import CalendarEffect from "./CalendarEffect";
 import { useLocation, useOutlet } from "react-router-dom";
-import { AnimatePresence, animate, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import LeafFalling from "../Anime/LeafFalling";
 
 const Calendar = () => {
@@ -14,7 +13,6 @@ const Calendar = () => {
 
     return <>{outlet}</>;
   };
-
   const zoomTime = {
     animate: {
       transition: {
@@ -24,6 +22,9 @@ const Calendar = () => {
       },
     },
   };
+  // Memo
+
+  // Handels
 
   return (
     <motion.section
@@ -41,16 +42,13 @@ const Calendar = () => {
               </motion.div>
             </AnimatePresence>
           </div>
+
+          <LeafFalling sentence="This is test for  " />
         </div>
-        <div className="animations">
-          <LeafFalling sentence="This is test for " />
-          <LeafFalling sentence="This" zIndex="Top" />
-        </div>
-        <CalendarYear />
-        {/* <CalendarTask /> */}
+        <CalendarEffect />
       </div>
     </motion.section>
   );
 };
 
-export default Calendar;
+export default React.memo(Calendar);

@@ -31,12 +31,12 @@ const CalendarBodyItem = ({ day, type, curDate }) => {
     ];
 
   // Check Classes
-  const typeDayClasses = `${classes.item} ${classes[`${type}`]} ${
+  const currentDayClasses =
+    type === "current-month" &&
     `${curDate.year}${curDate.month}${currentDay}` ===
-    `${curDate.year}${time.month}${day}`
+      `${curDate.year}${time.month}${day}`
       ? classes["current"]
-      : null
-  }`;
+      : null;
 
   // onClickPlaySound
   const onclickPlaySound = (e) => {
@@ -48,7 +48,9 @@ const CalendarBodyItem = ({ day, type, curDate }) => {
       to={`${time.year}_${time.month + 1}_${day}_${dayOfWeeks}`}
       onClick={onclickPlaySound}
     >
-      <li className={typeDayClasses}>{day}</li>
+      <li className={`${classes.item} ${classes[type]} ${currentDayClasses}`}>
+        {day}
+      </li>
     </Link>
   );
 };

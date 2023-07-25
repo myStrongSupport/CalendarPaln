@@ -6,11 +6,12 @@
   --font-text: "Harmattan", sans-serif;
   --font-main: IranReqular;
   --font-main-bold: IranBold;
-  --font-Kalmeh: Kalameh;
   --font-num: IranBoldNumber;
   --font-num2: IranRegularNumber;
   --font-num3: "Plus Jakarta Sans", sans-serif;
+  --font-khodkar: khodkar;
   --color: #fff;
+  --error: #9e3322;
 }
 * {
   margin: 0;
@@ -23,9 +24,13 @@ html {
 body {
   direction: rtl;
   /* background: linear-gradient(130deg, #2e365d 30%, #435da2, #5c7ecf); */
-  font-family: var(--font-text);
+  font-family: var(--font-main);
   overflow: hidden;
   color: var(--color);
+}
+
+input:focus {
+  background-color: green;
 }
 
 .container {
@@ -60,11 +65,10 @@ body {
   font-family: IranBoldNumber;
   src: url(assets//font/Iransans/IranSansX/Farsinumerals/IRANSansXFaNum-Bold.ttf);
 }
-/* Kalameh */
+/* Khodkar */
 @font-face {
-  font-family: Kalameh;
-  src: url(assets/font/Madthi/Tiam.ttf);
-  font-weight: 100;
+  font-family: khodkar;
+  src: url(assets/font/Sayeh/khodkar.ttf);
 }
 
 .video {

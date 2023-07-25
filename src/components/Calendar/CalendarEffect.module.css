@@ -1,0 +1,15 @@
+.drag {
+  position: absolute;
+  width: 150px;
+  height: 100%;
+  top: 0;
+  right: -140px;
+  background-color: "#fff";
+  z-index: 100;
+  display: grid;
+  align-items: center;
+  background: linear-gradient(#1a53cf00, rgba(128, 0, 128, 0));
+  /* background-color: red; */
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+}

@@ -54,6 +54,8 @@ const CalendarBody = () => {
     dispatch(CalendarActions.rendarCalendarPersian());
   }, [dispatch]);
 
+  console.log(lDays);
+
   return (
     <div className={classes.calendar}>
       <ul className={classes.weeks}>

@@ -1,3 +1,4 @@
+import React from "react";
 import CalendarHead from "./CalendarHead";
 import CalendarBody from "./CalendarBody";
 import classes from "./RealCalendar.module.css";
@@ -24,14 +25,15 @@ const RealCalendar = () => {
       transition: {
         type: "spring",
         duration: 1,
-        delay: contolDelay ? 8 : 0.5,
+        delay: contolDelay ? 4 : 0.5,
         height: {
           delay: 0.1,
         },
       },
     },
     exit: {
-      x: 1000,
+      y: 100,
+      opacity: 0,
     },
   };
 
@@ -39,7 +41,7 @@ const RealCalendar = () => {
     if (contolDelay) {
       setTimeout(() => {
         contolDelay = false;
-      }, 8000);
+      }, 4000);
       return;
     }
   }, []);
@@ -69,4 +71,4 @@ const RealCalendar = () => {
   );
 };
 
-export default RealCalendar;
+export default React.memo(RealCalendar);

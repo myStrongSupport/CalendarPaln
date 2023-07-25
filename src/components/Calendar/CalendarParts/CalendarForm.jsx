@@ -1,11 +1,13 @@
 import { useState, useRef } from "react";
 import { HiColorSwatch } from "react-icons/hi";
 import classes from "./CalendarForm.module.css";
-import { Form, useParams } from "react-router-dom";
+import { Form, useParams, useNavigate } from "react-router-dom";
 import { tasksActions } from "../../../store/TaskSlice/TasksSlice";
 import { useDispatch } from "react-redux";
+import { UiActions } from "../../../store/UiSlice/UiSlice";
 import CalendarTimeSwiper from "./CalendarTimeSwiper";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { RxArrowLeft } from "react-icons/rx";
 import sound from "../../../assets/sounds/ticking.mp3";
 import sound1 from "../../../assets/sounds/type.mp3";
 
@@ -13,11 +15,28 @@ const CalendarForm = () => {
   const textareaRef = useRef(null);
   const dispatch = useDispatch();
   const params = useParams();
+  const navigate = useNavigate();
+  // Title
+  const [title, setTitle] = useState("");
+  const [titleIsTouched, setTitleIsTouched] = useState(false);
+  const [titleIsFoucsed, setTitleIsFoucsed] = useState(false);
+  const titleIsValid = title.trim() !== "";
+  const titleInputIsValid = !titleIsValid && titleIsTouched;
+  const lableTitle = titleIsValid && titleIsFoucsed;
+  // Hours
   const [hour, setHour] = useState("00");
   const [min, setMin] = useState("00");
-  const [title, setTitle] = useState("");
+  // Desciptions
   const [description, setDescription] = useState("");
-
+  const [descriptionIsTouched, setDescriptionIsTouched] = useState(false);
+  const [descriptionIsFocused, setDescriptionIsFoucsed] = useState(false);
+  const descriptionIsValid = description.trim() !== "";
+  const descriptionTextareaIsValid =
+    !descriptionIsValid && descriptionIsTouched;
+  const labelDes = descriptionIsValid && descriptionIsFocused;
+  // Color
+  const [color, setColor] = useState("45deg,#e50084c2,#492AAE");
+  const [selectedColor, setSelectedColor] = useState("45deg,#e50084c2,#492AAE");
   // Get Housrs
   const hours = Array.from({ length: 24 }, (_, index) => {
     const hour = index.toString().padStart(2, "0");
@@ -28,6 +47,8 @@ const CalendarForm = () => {
     const minute = index.toString().padStart(2, "0");
     return { value: minute };
   });
+  // Form Validity
+  const formValidity = titleIsValid && descriptionIsValid;
 
   // Months
   const shamsiMonths = [
@@ -53,15 +74,18 @@ const CalendarForm = () => {
   const year = dateParams.split("_")[0];
 
   const colors = [
-    { color: "red" },
-    { color: "green" },
-    { color: "blue" },
-    { color: "yellow" },
-    { color: "orange" },
+    { color: "45deg,#450b0cde,#E60001" },
+    { color: "45deg,#08adde80,#29ED93" },
+    { color: "45deg,#20caf76b,#933DF5" },
+    {
+      color: "45deg, #f9484b80,#fbd72bb3",
+    },
+    { color: "45deg,#e50084c2,#492AAE" },
   ];
   // Handlers
   const titleChangeHandler = (e) => {
     setTitle(e.target.value);
+
     const audio = new Audio(sound1);
     audio.play();
   };
@@ -90,6 +114,26 @@ const CalendarForm = () => {
     }
   };
 
+  const pickColorHandler = (e, selectdColor) => {
+    setColor(selectdColor);
+    setSelectedColor(selectdColor);
+  };
+  const onBackHandler = () => {
+    navigate("/calendar");
+  };
+  // ON BLUR
+  const titleOnBlurHandler = () => {
+    setTitleIsTouched(true);
+  };
+
+  const descriptionOnBlurHandler = () => {
+    setDescriptionIsTouched(true);
+  };
+  // On Foucs
+  const titleOnFoucsHandler = () => {
+    setTitleIsFoucsed(true);
+  };
+  const descriptionOnFoucsHandler = () => [setDescriptionIsFoucsed(true)];
   // Handle Resize
 
   const handleResize = () => {
@@ -99,35 +143,63 @@ const CalendarForm = () => {
     element.style.height = Math.min(element.scrollHeight, 500) + "px";
   };
 
+  // Validation classes
+  const titleLabelClasses = lableTitle
+    ? classes.labelActive
+    : classes.labelInActive;
+  const desLabelClasses = labelDes
+    ? classes.labelActive
+    : classes.labelInActive;
+
+  const titleInputClasses = !titleInputIsValid
+    ? classes["form-container"]
+    : `${classes["form-container"]} ${classes.errorInput}`;
+
+  const desciprionInputClasses = !descriptionTextareaIsValid
+    ? classes["form-container"]
+    : `${classes["form-container"]} ${classes.errorInput}`;
+
   // Form Submit hander
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    // Form Validitity
-    let formValidity =
-      title.trim().length === 0 || description.trim().length === 0;
-    if (formValidity) {
-      console.log("form is not Valid");
+    setTitleIsTouched(true);
+    setDescriptionIsTouched(true);
+    if (!titleIsValid || !descriptionIsValid) {
       return;
-    } else {
-      const DATE_TASK = {
-        date: params.date,
-        task: {
-          hour,
-          min,
-          title,
-          description,
-        },
-      };
-      dispatch(tasksActions.addTask(DATE_TASK));
     }
+
+    // // Form Validitity
+
+    const DATE_TASK = {
+      date: params.date,
+      task: {
+        hour,
+        min,
+        title,
+        description,
+        color,
+      },
+    };
+    dispatch(tasksActions.addTask(DATE_TASK));
+
+    setTitle("");
+    setDescription("");
+    setTitleIsTouched(false);
+    setDescriptionIsTouched(false);
+    dispatch(UiActions.showTasks());
   };
   return (
     <motion.div
-      initial={{ x: 1000 }}
-      animate={{ x: 0 }}
-      exit={{ x: 1000 }}
+      animate={{ y: [100, 0], opacity: [0, 1] }}
+      transition={{
+        type: "spring",
+      }}
+      exit={{ y: 100, opacity: 0 }}
       className={classes["form"]}
     >
+      <div className={classes.back}>
+        <RxArrowLeft onClick={onBackHandler} />
+      </div>
       {/* Header */}
       <div className={classes["form-header"]}>
         <h4>{dayOfWeek}</h4>
@@ -154,47 +226,92 @@ const CalendarForm = () => {
             />
           </div>
         </div>
-        {/* Title */}
         <div className={classes.text}>
-          <div className={classes["form-container"]}>
+          {/* Title */}
+          <div className={titleInputClasses}>
             <input
               type="text"
               name="title"
               id="title"
-              required
+              value={title}
               onChange={titleChangeHandler}
+              onBlur={titleOnBlurHandler}
+              onFocus={titleOnFoucsHandler}
             />
-            <label>عنوان</label>
-            <i></i>
+            <label className={titleLabelClasses}>عنوان</label>
+            <AnimatePresence>
+              {titleInputIsValid && (
+                <motion.p
+                  animate={{
+                    y: [-30, 10],
+                    opacity: [0, 1],
+                  }}
+                  transition={{
+                    type: "spring",
+                  }}
+                  exit={{
+                    y: -10,
+                    opacity: 0,
+                  }}
+                  className={classes.error}
+                >
+                  عنوان نباید خالی باشد
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
           {/* Text Area */}
-          <div className={classes["form-container"]}>
+          <div className={desciprionInputClasses}>
             <textarea
               ref={textareaRef}
               name="description"
               id="description"
-              required
+              rows={1}
+              value={description}
               onChange={descriptionChangeHandler}
+              onBlur={descriptionOnBlurHandler}
+              onFocus={descriptionOnFoucsHandler}
               onInput={handleResize}
             ></textarea>
-            <label>توضیح مختصر</label>
-            <i></i>
+            <label className={desLabelClasses}>توضیح مختصر</label>
+            <AnimatePresence>
+              {descriptionTextareaIsValid && (
+                <motion.p
+                  initial={{ y: -30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{
+                    type: "spring",
+                  }}
+                  exit={{
+                    y: -30,
+                    opacity: 0,
+                  }}
+                  className={classes.error}
+                >
+                  توضیحات نباید خالی باشد
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
+          {/* Color */}
           <div className={classes["form-container"]}>
             <HiColorSwatch />
             <div className={classes.colors}>
               {colors.map((color, index) => (
                 <div
                   key={index}
-                  className={classes.color}
-                  style={{ background: color.color }}
+                  onClick={(e) => pickColorHandler(e, color.color)}
+                  className={`${classes.color} ${
+                    selectedColor === color.color ? classes.selected : ""
+                  }`}
+                  style={{ background: `linear-gradient(${color.color})` }}
                 ></div>
               ))}
             </div>
-            .
           </div>
         </div>
-        <button>
+        <button disabled={!formValidity}>
+          <span className={classes.btnOverlay}></span>
           <span>اضافه کارکردن</span>
         </button>
       </Form>

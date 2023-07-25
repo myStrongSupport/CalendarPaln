@@ -74,6 +74,10 @@ const TaskItem = ({ infoTask }) => {
     <motion.li
       variants={item}
       key={index}
+      style={{
+        background: `linear-gradient(${task.color})`,
+        backgroundSize: "150% 71%",
+      }}
       className={classes["task-list-item"]}
     >
       <div className={classes["task-info"]}>

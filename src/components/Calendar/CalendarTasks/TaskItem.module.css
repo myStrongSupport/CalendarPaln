@@ -1,5 +1,6 @@
 .show-task-item {
   margin-top: 60px;
+  font-family: var(--font-main);
   position: relative;
 }
 
@@ -13,18 +14,22 @@
 }
 .show-task-date h3 {
   width: 5%;
-  font-size: 3rem;
+  font-size: 2rem;
   color: var(--color);
   position: relative;
+  padding-right: 10px;
 }
 
 .show-task-date h3::after {
   content: "\2688";
   font-size: 0.8rem;
+  width: 10px;
+  height: 10px;
   position: absolute;
   color: var(--color);
-  right: -14px;
+  right: -11px;
   top: 50%;
+  z-index: 1;
   transform: translateY(-50%);
 }
 .task-task-date_day {
@@ -45,11 +50,12 @@
 }
 .show-task-date h4 {
   font-size: 2rem;
+  font-family: var(--font-main-bold);
 }
 
 .task-list-item {
   width: 90%;
-  background-color: rgba(95, 158, 160, 0.553);
+  /* background-color: rgba(95, 158, 160, 0.553); */
   backdrop-filter: blur(20px);
   margin-right: auto;
   display: flex;
@@ -60,6 +66,9 @@
   color: #000;
   border-radius: 10px;
   margin-top: 30px;
+  /* box-shadow: inset 0px 0px 58px -4px rgba(255, 255, 255, 1); */
+  background-size: 200% 200%;
+  animation: bg 5s ease infinite;
 }
 .task-info span {
   color: #fff;
@@ -84,6 +93,34 @@
   width: 2px;
   height: calc(100% + 60px);
   top: 0;
-  right: -10px;
-  background-color: #000;
+  right: -7px;
+  /* background-color: red; */
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0),
+    #a600ff,
+    rgba(255, 0, 0, 0)
+  );
+  background-size: 200% 200%;
+  animation: bg 5s ease-in infinite;
+}
+
+@keyframes bg {
+  0%,
+  100% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+}
+
+@keyframes bsg {
+  0%,
+  100% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 0 100%;
+  }
 }

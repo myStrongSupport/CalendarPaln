@@ -1,15 +1,11 @@
 .calendar-tasks-mention {
   width: 45%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  height: 500px;
+  font-family: var(--font-khodkar);
 }
 
 .calendar-tasks-mention h1 {
   color: var(--color);
-}
-
-.calendar-tasks-mention h1 {
   font-size: 3rem;
   padding: 3px 0;
   padding-right: 30px;
@@ -40,30 +36,32 @@
 .show-tasks {
   position: relative;
   margin: auto;
-  height: 100%;
   padding: 0 20px 0 80px;
   padding-bottom: 140px;
   display: flex;
   align-items: stretch;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: scroll;
+  height: 700px;
+  backdrop-filter: blur(5px);
 }
 
 .line::after {
   content: "";
   width: 2px;
   height: 100%;
-  right: 10px;
+  right: 13px;
   border-radius: 30px;
-  background-color: #000;
+  /* background: linear-gradient(45deg, #a600ff, #5e0080); */
+  background-size: 200% 200%;
   position: absolute;
+  animation: bg 10s ease infinite;
 }
 
 .empty {
   height: 80vh;
   display: grid;
   place-content: center;
-  /* background-color: red; */
 }
 
 .empty p {
@@ -71,4 +69,25 @@
   text-align: center;
   font-family: var(--font-main-bold);
   color: #aeaeae;
+}
+
+@media screen and (max-width: 2560px) {
+  .show-tasks {
+    height: 1200px;
+  }
+}
+@media screen and (max-width: 1536px) {
+  .show-tasks {
+    height: 710px;
+  }
+}
+
+@keyframes bg {
+  0%,
+  100% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 0 100%;
+  }
 }

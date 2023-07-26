@@ -88,6 +88,11 @@
   place-content: center;
 }
 
+.task-actions svg {
+  color: #fff;
+  cursor: pointer;
+}
+
 .show-task-item .task-dot {
   position: absolute;
   width: 2px;

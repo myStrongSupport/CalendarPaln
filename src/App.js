@@ -7,8 +7,9 @@ import ZekerPage, { loader as loadZekerDays } from "./pages/ZekerPage";
 import CalendarPage from "./pages/CalendarPage";
 import Root from "./pages/Root";
 import InfoPage from "./pages/InfoPage";
-import CalendarForm from "./components/Calendar/CalendarParts/CalendarForm";
 import RealCalendar from "./components/Calendar/CalendarParts/RealCalendar";
+import CalendarNewPage from "./pages/Calendar/CalendarNewPage";
+import CalendarEditPage from "./pages/Calendar/CalendarEditPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,7 +25,14 @@ function App() {
             { index: true, element: <RealCalendar /> },
             {
               path: "/calendar/:date",
-              element: <CalendarForm />,
+              element: <CalendarNewPage />,
+              action: () => {
+                console.log("red");
+              },
+            },
+            {
+              path: "/calendar/:date/edit/:id",
+              element: <CalendarEditPage />,
             },
           ],
         },

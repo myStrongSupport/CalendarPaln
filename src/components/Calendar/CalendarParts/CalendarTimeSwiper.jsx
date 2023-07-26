@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import classes from "./CalendarTimeSwiper.module.css";
 
-const CalendarTimeSwiper = ({ timeType, onChange, className }) => {
+const CalendarTimeSwiper = ({ timeType, onChange, className, init }) => {
   const handleSlideChange = (swiper) => {
     const activeSlide = swiper.slides[swiper.activeIndex].firstChild.innerText;
 
@@ -27,12 +27,10 @@ const CalendarTimeSwiper = ({ timeType, onChange, className }) => {
       )}
     </SwiperSlide>
   ));
-
   // Custom navigation styles
   const customNavigationStyles = {
     color: "red", // Customize the color of navigation buttons
   };
-
   return (
     <div>
       <Swiper
@@ -40,6 +38,7 @@ const CalendarTimeSwiper = ({ timeType, onChange, className }) => {
         slidesPerView={3}
         spaceBetween={10}
         centeredSlides={true}
+        initialSlide={Number(init)}
         speed={90}
         loop={true}
         navigation={{

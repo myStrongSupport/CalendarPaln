@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { BiEdit } from "react-icons/bi";
 import classes from "./TaskItem.module.css";
 import { motion } from "framer-motion";
@@ -70,28 +71,37 @@ const TaskItem = ({ infoTask }) => {
   const day = infoTask.date.split("_")[2];
   const month = infoTask.date.split("_")[1];
   const numberOfTasks = infoTask.tasks.length;
-  const tasksOfDay = infoTask.tasks.map((task, index) => (
-    <motion.li
-      variants={item}
-      key={index}
-      style={{
-        background: `linear-gradient(${task.color})`,
-        backgroundSize: "150% 71%",
-      }}
-      className={classes["task-list-item"]}
-    >
-      <div className={classes["task-info"]}>
-        <span>
-          {task.hour}:{task.min}
-        </span>
-        <h4>{task.title}</h4>
-        <p>{task.description}</p>
-      </div>
-      <div className={classes["task-actions"]}>
-        <BiEdit />
-      </div>
-    </motion.li>
-  ));
+  const tasksOfDay = infoTask.tasks.map((task) => {
+    return (
+      <motion.li
+        variants={item}
+        key={task.id}
+        style={{
+          background: `linear-gradient(${task.color})`,
+          backgroundSize: "150% 71%",
+        }}
+        className={classes["task-list-item"]}
+      >
+        <div className={classes["task-info"]}>
+          <span>
+            {task.hour}:{task.min}
+          </span>
+          <h4>{task.title}</h4>
+          <p>{task.description}</p>
+        </div>
+        <div className={classes["task-actions"]}>
+          <Link
+            to={{
+              pathname: `/calendar/${infoTask.date}/edit/${task.id}`,
+            }}
+            state={{ task: task }}
+          >
+            <BiEdit />
+          </Link>{" "}
+        </div>
+      </motion.li>
+    );
+  });
 
   return (
     <motion.div className={classes["show-task-item"]}>
@@ -122,4 +132,4 @@ const TaskItem = ({ infoTask }) => {
   );
 };
 
-export default TaskItem;
+export default React.memo(TaskItem);

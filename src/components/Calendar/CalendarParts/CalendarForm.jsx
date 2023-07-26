@@ -1,17 +1,18 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { HiColorSwatch } from "react-icons/hi";
 import classes from "./CalendarForm.module.css";
 import { Form, useParams, useNavigate } from "react-router-dom";
 import { tasksActions } from "../../../store/TaskSlice/TasksSlice";
 import { useDispatch } from "react-redux";
 import { UiActions } from "../../../store/UiSlice/UiSlice";
+import { v4 } from "uuid";
 import CalendarTimeSwiper from "./CalendarTimeSwiper";
 import { motion, AnimatePresence } from "framer-motion";
 import { RxArrowLeft } from "react-icons/rx";
 import sound from "../../../assets/sounds/ticking.mp3";
 import sound1 from "../../../assets/sounds/type.mp3";
 
-const CalendarForm = () => {
+const CalendarForm = ({ task }) => {
   const textareaRef = useRef(null);
   const dispatch = useDispatch();
   const params = useParams();
@@ -26,6 +27,7 @@ const CalendarForm = () => {
   // Hours
   const [hour, setHour] = useState("00");
   const [min, setMin] = useState("00");
+
   // Desciptions
   const [description, setDescription] = useState("");
   const [descriptionIsTouched, setDescriptionIsTouched] = useState(false);
@@ -119,7 +121,7 @@ const CalendarForm = () => {
     setSelectedColor(selectdColor);
   };
   const onBackHandler = () => {
-    navigate("/calendar");
+    navigate("..");
   };
   // ON BLUR
   const titleOnBlurHandler = () => {
@@ -162,32 +164,69 @@ const CalendarForm = () => {
   // Form Submit hander
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    setTitleIsTouched(true);
-    setDescriptionIsTouched(true);
-    if (!titleIsValid || !descriptionIsValid) {
-      return;
+
+    if (!task) {
+      setTitleIsTouched(true);
+      setDescriptionIsTouched(true);
+      if (!titleIsValid || !descriptionIsValid) {
+        return;
+      }
+
+      // // Form Validitity
+      const id = v4();
+
+      const DATE_TASK = {
+        date: params.date,
+        task: {
+          id: id,
+          hour,
+          min,
+          title,
+          description,
+          color,
+        },
+      };
+      dispatch(tasksActions.addTask(DATE_TASK));
+
+      setTitle("");
+      setDescription("");
+      setTitleIsTouched(false);
+      setDescriptionIsTouched(false);
+      dispatch(UiActions.showTasks());
+    } else {
+      const DATE_TASK = {
+        date: params.date,
+        task: {
+          id: task.id,
+          hour,
+          min,
+          title,
+          description,
+          color,
+        },
+      };
+
+      dispatch(tasksActions.updateTask(DATE_TASK));
     }
-
-    // // Form Validitity
-
-    const DATE_TASK = {
-      date: params.date,
-      task: {
-        hour,
-        min,
-        title,
-        description,
-        color,
-      },
-    };
-    dispatch(tasksActions.addTask(DATE_TASK));
-
-    setTitle("");
-    setDescription("");
-    setTitleIsTouched(false);
-    setDescriptionIsTouched(false);
-    dispatch(UiActions.showTasks());
   };
+  useEffect(() => {
+    const updateFormToEdit = () => {
+      setHour(task.hour);
+      setMin(task.min);
+      setTitle(task.title);
+      setDescription(task.description);
+      setColor(task.color);
+      setSelectedColor(task.color);
+      setTitleIsFoucsed(true);
+      setDescriptionIsFoucsed(true);
+    };
+
+    if (!task) {
+      return;
+    } else {
+      updateFormToEdit();
+    }
+  }, [task]);
   return (
     <motion.div
       animate={{ y: [100, 0], opacity: [0, 1] }}
@@ -216,6 +255,7 @@ const CalendarForm = () => {
               className="swiper2"
               timeType={minutes}
               onChange={onChangeMinHandler}
+              init={task ? task.min : 0}
             />
           </div>
           <div className={classes["form-container"]}>
@@ -223,6 +263,7 @@ const CalendarForm = () => {
               className="swiper1"
               timeType={hours}
               onChange={onChangeHourHandler}
+              init={task ? task.hour : 0}
             />
           </div>
         </div>
@@ -312,7 +353,7 @@ const CalendarForm = () => {
         </div>
         <button disabled={!formValidity}>
           <span className={classes.btnOverlay}></span>
-          <span>اضافه کارکردن</span>
+          {!task ? <span>اضافه کارکردن</span> : <span>اصلاح کارکردن</span>}
         </button>
       </Form>
     </motion.div>

@@ -77,11 +77,11 @@ const CalendarForm = ({ task }) => {
 
   const colors = [
     { color: "45deg,#450b0cde,#E60001" },
-    { color: "45deg,#08adde80,#29ED93" },
-    { color: "45deg,#20caf76b,#933DF5" },
     {
       color: "45deg, #f9484b80,#fbd72bb3",
     },
+    { color: "45deg,#08adde80,#29ED93" },
+    { color: "45deg,#20caf76b,#933DF5" },
     { color: "45deg,#e50084c2,#492AAE" },
   ];
   // Handlers

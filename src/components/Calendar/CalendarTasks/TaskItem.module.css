@@ -53,9 +53,11 @@
   font-family: var(--font-main-bold);
 }
 
+.task-list-item-container {
+  position: relative;
+}
 .task-list-item {
   width: 90%;
-  /* background-color: rgba(95, 158, 160, 0.553); */
   backdrop-filter: blur(20px);
   margin-right: auto;
   display: flex;
@@ -66,9 +68,10 @@
   color: #000;
   border-radius: 10px;
   margin-top: 30px;
-  /* box-shadow: inset 0px 0px 58px -4px rgba(255, 255, 255, 1); */
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
   background-size: 200% 200%;
-  animation: bg 5s ease infinite;
 }
 .task-info span {
   color: #fff;
@@ -82,15 +85,45 @@
   font-size: 1rem;
   color: #fff;
 }
-.task-list-item .task-actions {
-  font-size: 1.5rem;
-  display: grid;
-  place-content: center;
+.task-list-item:hover ~ .task-actions {
+  z-index: 999;
+}
+.task-actions {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  position: absolute;
+  left: 0px;
+  top: 0;
+  z-index: 0;
+  opacity: 1;
+  padding-right: 2px;
+  padding-left: 20px;
+  padding-block: 18px;
+  transform: translateX(0%);
+  animation: clearItem 0.4s 0.7s ease-out forwards;
+  z-index: 2;
+}
+.task-actions:hover {
+  animation: showItem 0.4s ease forwards;
+  opacity: 1;
+  z-index: 999;
 }
 
-.task-actions svg {
+.task-actions-link svg {
   color: #fff;
   cursor: pointer;
+  display: block;
+  font-size: 1.5rem;
+  margin: 12px;
+}
+
+.task-actions-link svg:hover {
+  animation: bump 0.2s linear forwards;
+  color: aqua;
 }
 
 .show-task-item .task-dot {
@@ -99,7 +132,6 @@
   height: calc(100% + 60px);
   top: 0;
   right: -7px;
-  /* background-color: red; */
   background: linear-gradient(
     45deg,
     rgba(255, 0, 0, 0),
@@ -110,6 +142,17 @@
   animation: bg 5s ease-in infinite;
 }
 
+/* Check Task is Done or is not Done */
+.isDone {
+  animation: Done 1s ease forwards;
+}
+.isNotDone {
+  animation: bg 5s ease infinite, NotDone 0.4s ease forwards;
+}
+.isHoverDone {
+  transform: translateX(0%) !important;
+  opacity: 1 !important;
+}
 @keyframes bg {
   0%,
   100% {
@@ -120,12 +163,75 @@
   }
 }
 
-@keyframes bsg {
+@keyframes showItem {
+  0% {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  10% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+@keyframes clearItem {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+}
+
+@keyframes bump {
   0%,
   100% {
-    background-position: 0 50%;
+    transform: scale(1);
   }
   50% {
-    background-position: 0 100%;
+    transform: scale(1.2);
+  }
+}
+@keyframes Done {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+}
+@keyframes NotDone {
+  0% {
+    opacity: 0.3;
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px) {
+  .task-list-item .task-info h4 {
+    font-size: 1rem;
+  }
+  .task-list-item .task-info p {
+    font-size: 0.8rem;
+    margin-top: 7px;
+  }
+}
+
+@media (max-width: 435px) {
+  .task-actions {
+    padding: 0;
+    margin-left: 12px;
   }
 }

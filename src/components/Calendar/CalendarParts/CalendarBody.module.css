@@ -39,3 +39,19 @@
   border-radius: 20px;
   margin-top: 20px;
 }
+
+@media (max-width: 1024px) {
+  .calendar .weeks {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 838px) {
+  .calendar .weeks {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 425px) {
+  .calendar .weeks {
+    font-size: 0.5rem;
+  }
+}

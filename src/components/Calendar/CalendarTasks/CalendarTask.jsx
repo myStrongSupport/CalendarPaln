@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./CalendarTask.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import TaskItem from "./TaskItem.jsx";
 import { tasksActions } from "../../../store/TaskSlice/TasksSlice";
-import { AnimatePresence, MotionConfig } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion as m } from "framer-motion";
 
 let init = true;
 const CalendarTask = () => {
+  const [isTop, setIsTop] = useState(true);
   const myTasks = useSelector((state) => state.tasks.tasks);
   const dispatch = useDispatch();
 
-  const TaskItems = myTasks.map((task, index) => {
-    return <TaskItem key={index} infoTask={task} />;
+  const TaskItems = myTasks.map((task) => {
+    return <TaskItem key={task.date} infoTask={task} />;
   });
 
   const isEmpty = myTasks.length === 0;
@@ -49,18 +50,41 @@ const CalendarTask = () => {
     };
     getTasks();
   }, [dispatch]);
-
+  const handleScroll = (e) => {
+    const { scrollTop } = e.target;
+    setIsTop(scrollTop === 0);
+    console.log(scrollTop === 0);
+  };
   return (
     <MotionConfig>
       <div className={classes["calendar-tasks-mention"]}>
-        <h1>برنامه های من</h1>
-        <div className={`${classes["show-tasks"]} ${classes.line}`}>
+        <m.h1
+          className={isTop ? classes.notOnScroll : classes.onScroll}
+          animate={{ opacity: [0, 1], y: [10, 0] }}
+          transition={{
+            delay: 0.3,
+            duration: 0.5,
+          }}
+        >
+          برنامه های من
+        </m.h1>
+        <div
+          onScroll={handleScroll}
+          className={`${classes["show-tasks"]} ${classes.line}`}
+        >
           <div>
             <AnimatePresence>
               {isEmpty ? (
-                <div className={classes.empty}>
+                <m.div
+                  animate={{ opacity: [0, 1], y: [10, 0] }}
+                  transition={{
+                    delay: 0.4,
+                    duration: 0.7,
+                  }}
+                  className={classes.empty}
+                >
                   <p>شما هیچ برنامه را وارد نکردید</p>
-                </div>
+                </m.div>
               ) : (
                 TaskItems
               )}
@@ -72,4 +96,4 @@ const CalendarTask = () => {
   );
 };
 
-export default CalendarTask;
+export default React.memo(CalendarTask);

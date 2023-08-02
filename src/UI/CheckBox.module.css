@@ -1,0 +1,20 @@
+.checkBox {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  outline: none;
+}
+
+.square {
+  animation: colory 3s ease infinite;
+}
+
+@keyframes colory {
+  0%,
+  100% {
+    stroke: #3f3f3f56;
+  }
+  50% {
+    stroke: #e2e2e28c;
+  }
+}

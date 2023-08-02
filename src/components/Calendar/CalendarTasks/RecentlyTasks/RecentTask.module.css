@@ -26,7 +26,7 @@
 }
 
 .item p {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   width: 100%;
   height: 50px;
   line-height: 2;
@@ -55,4 +55,18 @@
   border-radius: 10px;
   right: 13px;
   top: 10px;
+}
+
+@media (max-width: 1150px) {
+  .container {
+    padding: 50px;
+  }
+}
+@media (max-width: 855px) {
+  .title h3 {
+    font-size: 0.7rem;
+  }
+  .item p {
+    font-size: 0.5rem;
+  }
 }

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   tasks: [],
-  taskEdit: {},
 };
 
 const TasksSlice = createSlice({
@@ -10,13 +9,20 @@ const TasksSlice = createSlice({
   initialState,
   reducers: {
     addTask(state, action) {
-      let { date, task } = action.payload;
+      const { date, task } = action.payload;
       const existingDate = state.tasks.find((item) => item.date === date);
 
       if (existingDate) {
-        existingDate.tasks.push(task);
+        const updatedDate = {
+          ...existingDate,
+          tasks: [...existingDate.tasks, task],
+        };
+
+        state.tasks = state.tasks.map((item) =>
+          item.date === date ? updatedDate : item
+        );
       } else {
-        state.tasks.push({ date: date, tasks: [task] });
+        state.tasks.push({ date: date, tasks: [{ ...task, isDone: false }] });
       }
 
       state.tasks.sort((a, b) => {
@@ -50,6 +56,40 @@ const TasksSlice = createSlice({
       }
 
       state.tasks[existedDateIndex] = { date, tasks: updatedTasks };
+    },
+    deleteTask(state, action) {
+      const { date, taskId } = action.payload;
+      const existingDate = state.tasks.find((item) => item.date === date);
+      if (existingDate) {
+        const updatedTasks = existingDate.tasks.filter(
+          (item) => item.id !== taskId
+        );
+
+        if (updatedTasks.length === 0) {
+          state.tasks = state.tasks.filter((item) => item.date !== date);
+        } else {
+          state.tasks = state.tasks.map((item) =>
+            item.date === date ? { ...item, tasks: updatedTasks } : item
+          );
+        }
+      }
+    },
+    doneTask(state, action) {
+      const { task, date } = action.payload;
+      const taskId = task.id;
+      const existedDate = state.tasks.find((item) => item.date === date);
+      const existedDateIndex = state.tasks.findIndex(
+        (item) => item.date === date
+      );
+      let updateCheckTask;
+      if (existedDate) {
+        const existedTaskIndex = existedDate.tasks.findIndex(
+          (task) => task.id === taskId
+        );
+        updateCheckTask = [...existedDate.tasks];
+        updateCheckTask[existedTaskIndex] = { ...task };
+      }
+      state.tasks[existedDateIndex] = { date, tasks: updateCheckTask };
     },
   },
 });

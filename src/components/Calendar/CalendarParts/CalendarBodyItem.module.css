@@ -45,3 +45,22 @@
 .current.item::before {
   background-color: rgb(182, 210, 0) !important;
 }
+
+@media (max-width: 425px) {
+  .item {
+    font-size: 0.8rem;
+  }
+  .item::before {
+    width: 20px;
+    height: 20px;
+  }
+}
+@media (max-width: 375px) {
+  .item {
+    font-size: 0.5rem;
+  }
+  .item::before {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -10,14 +10,15 @@
   background: linear-gradient(
     45deg,
     rgba(0, 49, 86, 0.7) 0%,
-    rgba(1, 97, 95, 0.5) 48%,
-    rgba(0, 49, 86, 0.7) 100%
+    rgba(255, 255, 255, 0.1) 48%,
+    rgba(0, 81, 143, 0.7) 100%
   );
-  background-size: 200% 100%;
-  backdrop-filter: blur(5px);
+  /* background-size: 200% 200%; */
+  /* backdrop-filter: blur(5px); */
+  /* background: linear-gradient(45deg, black, rgba(255, 255, 255, 0.142), black); */
+  background-size: 200% 400%;
+  animation: bg 10s ease-in-out infinite, blury 10s ease-in-out infinite;
   z-index: 50;
-  animation: borderR 10s ease infinite;
-  animation: bg 10s ease infinite;
 }
 
 .bgChange {
@@ -60,22 +61,79 @@
   height: 100px;
 }
 
-@keyframes borderR {
-  0% {
-    backdrop-filter: blur(3px);
+@media (max-width: 1286px) {
+  .calendar {
+    width: 80%;
   }
+}
+@media (max-width: 1110px) {
+  .calendar {
+    width: 90%;
+  }
+}
+@media (max-width: 954px) {
+  .calendar {
+    width: 100%;
+  }
+}
 
-  30% {
-    backdrop-filter: blur(10px);
+@media (max-width: 768px) {
+  .calendar {
+    width: 75%;
+    background: linear-gradient(
+      45deg,
+      black,
+      rgba(255, 255, 255, 0.142),
+      black
+    );
+    background-size: 200% 400%;
+    animation: bg 10s ease-in-out infinite, blury 10s ease-in-out infinite;
+  }
+}
+@media (max-width: 624px) {
+  .calendar {
+    width: 85%;
+  }
+}
+@media (max-width: 510px) {
+  .calendar {
+    width: 100%;
+  }
+}
+@media (max-width: 425px) {
+  .calendar {
+    width: 100%;
+    padding: 30px 10px;
+  }
+}
+
+@keyframes bg {
+  0% {
+    background-position: 0% 0%;
   }
   50% {
-    backdrop-filter: blur(15px);
+    background-position: 100% 100%;
   }
-  70% {
-    backdrop-filter: blur(20px);
-  }
-
   100% {
-    backdrop-filter: blur(3px);
+    background-position: 0% 0%;
+    /* background-size: 200% 400%; */
+  }
+}
+
+@keyframes blury {
+  0% {
+    backdrop-filter: blur(5px);
+  }
+  30% {
+    backdrop-filter: blur(0px);
+  }
+  50% {
+    backdrop-filter: blur(5px);
+  }
+  80% {
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    backdrop-filter: blur(5px);
   }
 }

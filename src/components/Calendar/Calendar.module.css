@@ -46,3 +46,26 @@
   background-color: #fff;
   z-index: 100;
 }
+
+@media (max-width: 986px) {
+  .wrapper {
+    padding-inline: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding-inline: 15px;
+  }
+  .container {
+    display: block;
+  }
+  .calendar-image {
+    height: 100vh;
+  }
+}
+@media (max-width: 768px) {
+  .wrapper {
+    padding-inline: 10px;
+  }
+}

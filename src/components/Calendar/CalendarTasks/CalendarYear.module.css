@@ -9,8 +9,6 @@
 }
 
 .container {
-  width: 100%;
-  /* height: 100%; */
   padding-inline: 100px;
 }
 
@@ -109,5 +107,57 @@
   }
   50% {
     background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-inline: 50px;
+  }
+  .year {
+    font-size: 10rem;
+  }
+  .firstLetter {
+    font-size: 10rem;
+  }
+  .container .date .month {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding-inline: 10px;
+    width: 100%;
+  }
+  .year {
+    font-size: 9rem;
+  }
+  .firstLetter {
+    font-size: 9rem;
+  }
+  .container .date .month {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-day-task {
+    position: absolute;
+    width: 100%;
+    top: 0;
+  }
+  .date {
+    justify-content: center;
+    padding-left: 40px;
+  }
+  .year {
+    font-size: 16rem;
+  }
+  .firstLetter {
+    font-size: 14rem;
+  }
+  .container .date .month {
+    font-size: 3rem;
   }
 }

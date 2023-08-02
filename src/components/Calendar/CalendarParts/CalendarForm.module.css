@@ -283,3 +283,24 @@
     background-position: 0 50%;
   }
 }
+
+@media (max-width: 1270px) {
+  .form {
+    width: 95%;
+  }
+}
+@media (max-width: 768px) {
+  .form {
+    width: 86%;
+    border: 1px solid;
+  }
+}
+
+@media (max-width: 425px) {
+  .form {
+    width: 99%;
+  }
+  .main-form {
+    padding: 10px;
+  }
+}

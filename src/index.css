@@ -88,3 +88,13 @@ input:focus {
 ::-webkit-scrollbar {
   width: 0px;
 }
+
+@media (max-width: 770px) {
+  html {
+    overflow: unset;
+  }
+  body {
+    overflow: unset;
+    background: #10001d;
+  }
+}

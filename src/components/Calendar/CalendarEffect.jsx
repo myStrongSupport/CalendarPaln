@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./CalendarEffect.module.css";
 import CalendarTask from "./CalendarTasks/CalendarTask";
 import CalendarYear from "./CalendarTasks/CalendarYear";
@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { UiActions } from "../../store/UiSlice/UiSlice";
 const CalendarEffect = (props) => {
+  const [isViewport768, setIsViewport768] = useState(window.innerWidth < 769);
   const dispatch = useDispatch();
   const showTask = useSelector((state) => state.ui.showTask);
   const dragX = useMotionValue(0);
@@ -17,6 +18,18 @@ const CalendarEffect = (props) => {
       dispatch(UiActions.ShowHandler());
     }
   };
+
+  useEffect(() => {
+    const handleViewportChange = () => {
+      setIsViewport768(window.innerWidth < 769);
+    };
+    window.addEventListener("resize", handleViewportChange);
+    handleViewportChange();
+    return () => {
+      window.removeEventListener("resize", handleViewportChange);
+    };
+  }, []);
+
   return (
     <>
       {showTask && <CalendarTask />}

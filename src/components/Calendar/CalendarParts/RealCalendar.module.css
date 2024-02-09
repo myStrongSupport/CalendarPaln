@@ -13,9 +13,6 @@
     rgba(255, 255, 255, 0.1) 48%,
     rgba(0, 81, 143, 0.7) 100%
   );
-  /* background-size: 200% 200%; */
-  /* backdrop-filter: blur(5px); */
-  /* background: linear-gradient(45deg, black, rgba(255, 255, 255, 0.142), black); */
   background-size: 200% 400%;
   animation: bg 10s ease-in-out infinite, blury 10s ease-in-out infinite;
   z-index: 50;

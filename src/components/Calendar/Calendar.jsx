@@ -45,7 +45,7 @@ const Calendar = () => {
             </AnimatePresence>
           </div>
 
-          <LeafFalling sentence="This is test for me" />
+          <LeafFalling sentence="this jii feij lsi " />
         </div>
         <CalendarEffect />
       </div>

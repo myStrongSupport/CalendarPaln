@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import React, { useMemo } from "react";
+import { useLocation } from "react-router-dom";
 import CalendarForm from "../../components/Calendar/CalendarParts/CalendarForm";
 
 const CalendarEditPage = () => {
@@ -9,8 +9,6 @@ const CalendarEditPage = () => {
   if (location.state) {
     task = location.state.task;
   }
-  const params = useParams();
-  const { id, date } = params;
 
   const memoizedComponent = useMemo(
     () => (
@@ -19,7 +17,7 @@ const CalendarEditPage = () => {
       </>
     ),
 
-    [date, id]
+    [task]
   );
   return memoizedComponent;
 };

@@ -48,7 +48,7 @@ function CheckBox({ date, task }) {
   };
   useEffect(() => {
     setIsChecked(task.isDone);
-  }, []);
+  }, [task.isDone]);
   return (
     <m.svg
       initial={false}

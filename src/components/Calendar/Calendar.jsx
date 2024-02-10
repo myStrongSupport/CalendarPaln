@@ -4,8 +4,6 @@ import CalendarEffect from "./CalendarEffect";
 import { useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import LeafFalling from "../Anime/LeafFalling";
-import RealCalendar from "../Calendar/CalendarParts/RealCalendar";
-import CalendarYear from "./CalendarTasks/CalendarYear";
 
 const Calendar = () => {
   const location = useLocation();

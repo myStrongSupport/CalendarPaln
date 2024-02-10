@@ -28,7 +28,7 @@ const CalendarEffect = (props) => {
     return () => {
       window.removeEventListener("resize", handleViewportChange);
     };
-  }, []);
+  }, [isViewport768]);
 
   return (
     <>

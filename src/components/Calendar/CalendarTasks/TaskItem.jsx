@@ -3,26 +3,13 @@ import { Link } from "react-router-dom";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import classes from "./TaskItem.module.css";
-import { AnimatePresence, MotionConfig, motion as m } from "framer-motion";
+import { AnimatePresence, motion as m } from "framer-motion";
 import CheckBox from "../../../UI/CheckBox";
 import { useDispatch } from "react-redux";
 import { tasksActions } from "../../../store/TaskSlice/TasksSlice";
 const TaskItem = ({ infoTask }) => {
-  console.log("Ramtin");
   const dispath = useDispatch();
-  const showTask = {
-    hidden: {
-      opacity: 0,
-    },
-    show: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerchildren: 1,
-      },
-    },
-    exit: {},
-  };
+
   const itemHead = {
     hidden: {
       y: 100,

@@ -4,7 +4,7 @@ import CalendarBodyItem from "./CalendarBodyItem";
 import { CalendarActions } from "../../../store/CalendarSlice/CalendarSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { AnimatePresence, motion } from "framer-motion";
-
+let init = true;
 const CalendarBody = () => {
   const [lDays, setLdays] = useState([]);
 
@@ -28,8 +28,12 @@ const CalendarBody = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setCurM({ year: date.year, month: date.month });
-  }, []);
+    if (init) {
+      setCurM({ year: date.year, month: date.month });
+      init = false;
+      return;
+    }
+  }, [date.month, date.year]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
